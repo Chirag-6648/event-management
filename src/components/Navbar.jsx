@@ -10,7 +10,7 @@ const Navbar = () => {
   const navItems = [
     { name: "HOME", path: "/" },
     { name: "ABOUT", path: "/about" },
-    { name: "EVENTS", path: "/events" },
+    { name: "EVENTS", path: "/eventCategory" },
     { name: "GALLERY", path: "/gallery" },
     { name: "CONTACT", path: "/contact" },
   ];
@@ -44,9 +44,11 @@ const Navbar = () => {
 
           {/* Login Button */}
           <div className="hidden md:block">
-            <button className="bg-orange-500 hover:bg-orange-400 text-white font-semibold py-2 px-4 rounded-lg shadow">
-              Login
-            </button>
+            <Link to={"/login"}>
+              <button className="bg-orange-500 hover:bg-orange-400 text-white font-semibold py-2 px-4 rounded-lg shadow">
+                Login
+              </button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}

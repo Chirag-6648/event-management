@@ -9,6 +9,12 @@ import About from "./pages/About.jsx";
 import Contact from "./pages/Contact.jsx";
 import Gallery from "./pages/Gallery.jsx";
 import Events from "./pages/Events.jsx";
+import Event from "./components/Events/Events.jsx";
+import EventDetails from "./components/Events/Event.jsx";
+import Login from "./pages/Login.jsx";
+import ForgotPassword from "./pages/ForgotPassword.jsx";
+import Register from "./pages/Register.jsx";
+import UserAccount from "./pages/UserAccount.jsx";
 
 const router = createBrowserRouter([
   {
@@ -32,8 +38,32 @@ const router = createBrowserRouter([
         element: <Gallery />,
       },
       {
-        path: "/events",
+        path: "/eventCategory",
         element: <Events />,
+      },
+      {
+        path: "/events",
+        element: <Event />,
+      },
+      {
+        path: "/eventDetails",
+        element: <EventDetails />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/forgot-password",
+        element: <ForgotPassword />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
+      },
+      {
+        path: "/account",
+        element: <UserAccount />,
       },
     ],
   },

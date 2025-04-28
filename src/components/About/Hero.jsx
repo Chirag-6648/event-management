@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./hero.css";
 import mountain from "../../assets/mountain.jpg";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   const [animate, setAnimate] = useState(false);
@@ -31,11 +32,11 @@ const Hero = () => {
 
         <div className="mt-3 text-sm text-gray-300 space-x-2">
           <span className="hover:text-yellow-300 font-bold text-xl cursor-pointer">
-            Home
+            <Link to="/">Home</Link>
           </span>
           <span className="text-yellow-400">|</span>
           <span className="hover:text-yellow-300 text-xl font-bold cursor-pointer">
-            About Us
+            <Link to="/about">About Us</Link>
           </span>
         </div>
       </div>
