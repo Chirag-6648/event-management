@@ -22,6 +22,8 @@ import PostCategory from "./admin/pages/pages/PostCategory.jsx";
 import AddGallery from "./admin/pages/pages/AddGallery.jsx";
 import ContactList from "./admin/pages/pages/ContactList.jsx";
 import Profile from "./admin/pages/pages/Profile.jsx";
+import MyBookings from "./pages/MyBookings.jsx";
+import EditProfile from "./pages/EditProfile.jsx";
 
 const router = createBrowserRouter([
   {
@@ -71,6 +73,14 @@ const router = createBrowserRouter([
       {
         path: "/account",
         element: <UserAccount />,
+      },
+      {
+        path: "/editprofile",
+        element: <EditProfile />,
+      },
+      {
+        path: "/mybookings",
+        element: <MyBookings />,
       },
     ],
   },
