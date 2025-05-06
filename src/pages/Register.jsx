@@ -1,10 +1,13 @@
 import React from "react";
+import mountain from "../assets/mountain.jpg";
 import { Link } from "react-router-dom";
 
 const Register = () => {
   return (
-    <div className="min-h-screen bg-black text-white flex items-center justify-center p-6">
-      <div className="w-full max-w-md bg-gray-950 p-8 rounded-2xl shadow-lg">
+    <div
+      className="min-h-screen bg-black text-white bg-cover flex items-center justify-center p-6"
+      style={{ backgroundImage: `url(${mountain})` }}>
+      <div className="w-full max-w-md bg-gray-950/70 p-8 rounded-2xl shadow-lg">
         <h2 className="text-3xl font-bold mb-6 text-center">Create Account</h2>
 
         <form className="space-y-6">

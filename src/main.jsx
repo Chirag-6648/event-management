@@ -1,7 +1,6 @@
 import { Fragment, StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import App from "./App.jsx";
 import { createBrowserRouter, Router, RouterProvider } from "react-router-dom";
 import HomeLayout from "./layout/HomeLayout.jsx";
 import Home from "./pages/Home.jsx";
@@ -15,6 +14,14 @@ import Login from "./pages/Login.jsx";
 import ForgotPassword from "./pages/ForgotPassword.jsx";
 import Register from "./pages/Register.jsx";
 import UserAccount from "./pages/UserAccount.jsx";
+import AdminLoginPage from "./admin/pages/pages/AdminLoginPage.jsx";
+import AdminDashboard from "./admin/pages/AdminDashboard.jsx";
+import UserList from "./admin/pages/pages/UserList.jsx";
+import PostEvent from "./admin/pages/pages/PostEvent.jsx";
+import PostCategory from "./admin/pages/pages/PostCategory.jsx";
+import AddGallery from "./admin/pages/pages/AddGallery.jsx";
+import ContactList from "./admin/pages/pages/ContactList.jsx";
+import Profile from "./admin/pages/pages/Profile.jsx";
 
 const router = createBrowserRouter([
   {
@@ -64,6 +71,40 @@ const router = createBrowserRouter([
       {
         path: "/account",
         element: <UserAccount />,
+      },
+    ],
+  },
+  {
+    path: "/admin/login",
+    element: <AdminLoginPage />,
+  },
+  {
+    path: "/admin",
+    element: <AdminDashboard />,
+    children: [
+      {
+        path: "/admin",
+        element: <UserList />,
+      },
+      {
+        path: "/admin/addevent",
+        element: <PostEvent />,
+      },
+      {
+        path: "/admin/category",
+        element: <PostCategory />,
+      },
+      {
+        path: "/admin/addgallery",
+        element: <AddGallery />,
+      },
+      {
+        path: "/admin/contactlist",
+        element: <ContactList />,
+      },
+      {
+        path: "/admin/profile",
+        element: <Profile />,
       },
     ],
   },

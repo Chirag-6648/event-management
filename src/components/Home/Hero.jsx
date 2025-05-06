@@ -34,7 +34,7 @@ const Hero = () => {
           <input
             type="email"
             placeholder="Enter your email"
-            className="w-3 border-orange-400 border-1 md:w-3/4 px-4 py-3 rounded-lg text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-400"
+            className="w-3 border-orange-400 border-1 md:w-3/4 px-4 py-3 rounded-lg  text-gray-500 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-400"
           />
           <button className="bg-orange-500 hover:bg-orange-400 text-white font-semibold py-3 px-4 rounded-xl text-md shadow-lg transition duration-300 ease-in-out">
             Get Started
