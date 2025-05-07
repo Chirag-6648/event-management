@@ -4,7 +4,7 @@ import { Link, Outlet } from "react-router-dom";
 const AdminDashboard = () => {
   return (
     <div className="flex min-h-screen bg-black text-white">
-      <aside className="w-64 bg-[#CC5500] p-5">
+      <aside className="w-64 bg-[#9B3922] p-5">
         <h2 className="text-2xl font-bold mb-6">Admin Panel</h2>
         <ul className="space-y-3 text-white text-sm">
           <li className="hover:underline cursor-pointer">
@@ -30,7 +30,7 @@ const AdminDashboard = () => {
       </aside>
 
       <main className="flex-1 p-6 overflow-auto">
-        <div className="bg-[#CC5500] rounded-md p-6 mb-6 flex justify-between items-center shadow-md">
+        <div className="bg-[#9B3922] rounded-md p-6 mb-6 flex justify-between items-center shadow-md">
           <h1 className="text-2xl font-bold">Event Management Admin</h1>
           <div className="w-10 h-10 rounded-full bg-white">
             <Link to={"/admin/profile"}>

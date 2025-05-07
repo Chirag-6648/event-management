@@ -55,7 +55,7 @@ const UserList = () => {
   return (
     <div>
       <table className="w-full table-auto text-left border-collapse">
-        <thead className="bg-[#b34a00] text-white">
+        <thead className="bg-[#9B3922] text-white">
           <tr>
             <th className="p-3">No</th>
             <th className="p-3">Profile</th>
