@@ -1,8 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import mountain from "../assets/mountain.jpg";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Register = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    gender: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/user/register",
+        formData
+      );
+      console.log("Success:", response.data);
+      alert("Registration successful!");
+    } catch (error) {
+      console.error("Registration error:", error);
+      if (error.response) {
+        alert(`Error: ${error.response.data.message}`);
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+    }
+  };
+
   return (
     <div
       className="min-h-screen bg-black text-white bg-cover flex items-center justify-center p-6"
@@ -10,7 +46,7 @@ const Register = () => {
       <div className="w-full max-w-md bg-gray-950/70 p-8 rounded-2xl shadow-lg">
         <h2 className="text-3xl font-bold mb-6 text-center">Create Account</h2>
 
-        <form className="space-y-6">
+        <form className="space-y-6" onSubmit={handleSubmit}>
           {/* Name */}
           <div>
             <label htmlFor="name" className="block mb-2 text-sm font-medium">
@@ -18,7 +54,10 @@ const Register = () => {
             </label>
             <input
               type="text"
+              name="name"
               id="name"
+              value={formData.name}
+              onChange={handleChange}
               className="w-full px-4 py-3 rounded-lg bg-gray-900 text-white focus:outline-none focus:ring-2 focus:ring-orange-500"
               placeholder="Your Name"
               required
@@ -32,7 +71,10 @@ const Register = () => {
             </label>
             <input
               type="email"
+              name="email"
               id="email"
+              value={formData.email}
+              onChange={handleChange}
               className="w-full px-4 py-3 rounded-lg bg-gray-900 text-white focus:outline-none focus:ring-2 focus:ring-orange-500"
               placeholder="you@example.com"
               required
@@ -48,17 +90,20 @@ const Register = () => {
                   type="radio"
                   name="gender"
                   value="male"
+                  checked={formData.gender === "male"}
+                  onChange={handleChange}
                   className="form-radio h-5 w-5 text-orange-500 bg-gray-900 focus:ring-orange-500"
                   required
                 />
                 <span>Male</span>
               </label>
-
               <label className="flex items-center space-x-2">
                 <input
                   type="radio"
                   name="gender"
                   value="female"
+                  checked={formData.gender === "female"}
+                  onChange={handleChange}
                   className="form-radio h-5 w-5 text-orange-500 bg-gray-900 focus:ring-orange-500"
                   required
                 />
@@ -76,7 +121,10 @@ const Register = () => {
             </label>
             <input
               type="password"
+              name="password"
               id="password"
+              value={formData.password}
+              onChange={handleChange}
               className="w-full px-4 py-3 rounded-lg bg-gray-900 text-white focus:outline-none focus:ring-2 focus:ring-orange-500"
               placeholder="Create a password"
               required
@@ -94,7 +142,7 @@ const Register = () => {
         {/* Login Link */}
         <p className="mt-6 text-center text-sm">
           Already have an account?{" "}
-          <Link to={"/login"} className="text-orange-400 hover:underline">
+          <Link to="/login" className="text-orange-400 hover:underline">
             Login
           </Link>
         </p>
