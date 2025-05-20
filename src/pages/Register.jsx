@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import mountain from "../assets/mountain.jpg";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -24,15 +25,15 @@ const Register = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/user/register",
+        "http://localhost:3000/user/register",
         formData
       );
       console.log("Success:", response.data);
-      alert("Registration successful!");
+      toast.success("Registration successful!");
     } catch (error) {
       console.error("Registration error:", error);
       if (error.response) {
-        alert(`Error: ${error.response.data.message}`);
+        toast.error(error.response.data.message);
       } else {
         alert("Something went wrong. Please try again.");
       }

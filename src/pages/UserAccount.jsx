@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import mountain from "../assets/mountain.jpg";
+import { useSelector } from "react-redux";
 
 const UserAccount = () => {
+  const user = useSelector((state) => state.auth.user);
   return (
     <div
       className="min-h-screen bg-black text-white bg-cover flex items-center justify-center p-6"
@@ -22,17 +24,17 @@ const UserAccount = () => {
           <div className="space-y-2">
             <div>
               <span className="text-gray-400">Name:</span>
-              <p className="text-lg font-semibold">Chirag Rathod</p>
+              <p className="text-lg font-semibold">{user.name}</p>
             </div>
 
             <div>
               <span className="text-gray-400">Email:</span>
-              <p className="text-lg font-semibold">rathodchirag@gmail.com</p>
+              <p className="text-lg font-semibold">{user.email}</p>
             </div>
 
             <div>
               <span className="text-gray-400">Gender:</span>
-              <p className="text-lg font-semibold">Male</p>
+              <p className="text-lg font-semibold">{user.gender}</p>
             </div>
           </div>
 

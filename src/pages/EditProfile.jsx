@@ -1,18 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import mountain from "../assets/mountain.jpg";
+import { useSelector } from "react-redux";
 
 const EditProfile = () => {
-  const [formData, setFormData] = useState({
-    name: "Chirag Rathod",
-    email: "chiragrathod@gmail.com",
-    gender: "Male",
-    phone: "55454545445",
-    remember: false,
-  });
+  const user = useSelector((state) => state.auth.user);
+  const [formData, setFormData] = useState(null);
+
+  useEffect(() => {
+    if (user) {
+      setFormData({
+        name: user.name || "",
+        email: user.email || "",
+        gender: user.gender || "",
+        phone: user.phone || "",
+        remember: false,
+      });
+    }
+  }, [user]);
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Updated user data:", formData);
   };
+
+  if (!formData) return <div className="text-white p-4">Loading...</div>;
 
   return (
     <div
@@ -31,7 +50,8 @@ const EditProfile = () => {
           type="text"
           name="name"
           value={formData.name}
-          className="w-full mb-4 p-2 border rounded"
+          onChange={handleChange}
+          className="w-full mb-4 p-2 border rounded text-white"
         />
 
         <label className="block mb-2">Email</label>
@@ -39,7 +59,8 @@ const EditProfile = () => {
           type="email"
           name="email"
           value={formData.email}
-          className="w-full mb-4 p-2 border rounded"
+          onChange={handleChange}
+          className="w-full mb-4 p-2 border rounded text-white"
         />
 
         <label className="block mb-2">Gender</label>
@@ -51,29 +72,12 @@ const EditProfile = () => {
                 name="gender"
                 value={option}
                 checked={formData.gender === option}
+                onChange={handleChange}
               />
               <span>{option}</span>
             </label>
           ))}
         </div>
-
-        <label className="block mb-2">Phone Number</label>
-        <input
-          type="text"
-          name="phone"
-          value={formData.phone}
-          className="w-full mb-4 p-2 border rounded"
-        />
-
-        <label className="flex items-center mb-4">
-          <input
-            type="checkbox"
-            name="remember"
-            checked={formData.remember}
-            className="mr-2"
-          />
-          Remember me
-        </label>
 
         <button
           type="submit"

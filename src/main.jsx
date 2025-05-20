@@ -24,6 +24,10 @@ import ContactList from "./admin/pages/pages/ContactList.jsx";
 import Profile from "./admin/pages/pages/Profile.jsx";
 import MyBookings from "./pages/MyBookings.jsx";
 import EditProfile from "./pages/EditProfile.jsx";
+import { Toaster } from "react-hot-toast";
+import { store } from "./store/store.jsx";
+import { Provider } from "react-redux";
+import AuthLayout from "./components/AuthLayout.jsx";
 
 const router = createBrowserRouter([
   {
@@ -76,7 +80,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/editprofile",
-        element: <EditProfile />,
+        element: (
+          <AuthLayout authentication>
+            <EditProfile />
+          </AuthLayout>
+        ),
       },
       {
         path: "/mybookings",
@@ -122,6 +130,9 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <Fragment>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <Toaster position="top-right" reverseOrder={false} />
+      <RouterProvider router={router} />
+    </Provider>
   </Fragment>
 );

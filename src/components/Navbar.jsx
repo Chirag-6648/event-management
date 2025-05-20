@@ -2,12 +2,14 @@ import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import avatar from "../assets/avatar.jpg";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../store/authSlice";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [showDropdown, setShowDropdown] = useState(false);
-  const [user, setUser] = useState({ name: "Chirag Rathod" }); // simulate user logged in
-
+  const [showDropdown, setShowDropdown] = useState(false); // simulate user logged in
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.user);
   const dropdownRef = useRef(null);
 
   const toggleMenu = () => setIsOpen(!isOpen);
@@ -93,7 +95,7 @@ const Navbar = () => {
                 <button
                   onClick={() => {
                     // handle logout logic here
-                    setUser(null);
+                    dispatch(logout());
                     setShowDropdown(false);
                   }}
                   className="w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100">
@@ -145,7 +147,7 @@ const Navbar = () => {
                 My Bookings
               </Link>
               <button
-                onClick={() => setUser(null)}
+                onClick={() => dispatch(logout())}
                 className="mt-1 text-left w-full text-white hover:text-orange-400">
                 Logout
               </button>
